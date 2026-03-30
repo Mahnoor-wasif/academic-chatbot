@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Academic Policy Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div class="hero-copy">
+          <div class="brand">
+            <div class="sigil">AP</div>
+            <div>
+              <h1>Academic Policy Assistant</h1>
+              <p>Offline, policy-first answers grounded in your documents.</p>
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-card-title">What you can ask</div>
+            <ul>
+              <li>Attendance and participation rules</li>
+              <li>Late submission and extension policy</li>
+              <li>Exam conduct, resits, and appeals</li>
+              <li>Graduation requirements and GPA</li>
+            </ul>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orb orb-one"></div>
+          <div class="orb orb-two"></div>
+          <div class="orb orb-three"></div>
+          <div class="stack">
+            <div class="sheet sheet-top"></div>
+            <div class="sheet sheet-mid"></div>
+            <div class="sheet sheet-bottom"></div>
+          </div>
+          <svg class="spark" viewBox="0 0 140 140">
+            <path d="M70 12 L78 42 L108 50 L78 58 L70 88 L62 58 L32 50 L62 42 Z"></path>
+            <circle cx="108" cy="92" r="8"></circle>
+            <circle cx="34" cy="96" r="6"></circle>
+          </svg>
+        </div>
+      </header>
+
+      <main class="chat-shell">
+        <section class="chat-window" id="chatWindow">
+          <div class="message system">
+            <div class="bubble">
+              Ask about attendance, grading, exams, appeals, and more.
+            </div>
+          </div>
+        </section>
+
+        <form class="composer" id="chatForm">
+          <div class="input-shell">
+            <input
+              id="messageInput"
+              type="text"
+              placeholder="Ask a policy question..."
+              autocomplete="off"
+            >
+            <button type="button" class="mic-button" id="micButton" aria-pressed="false" aria-label="Start voice input">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Zm5 9a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-2.08A7 7 0 0 0 19 12h-2Z"></path>
+              </svg>
+              <span class="sr-only">Voice input</span>
+            </button>
+          </div>
+          <button type="submit">Send</button>
+        </form>
+
+        <div class="voice-status" id="voiceStatus">Voice input ready.</div>
+
+        <div class="hint">
+          Sources are shown with each answer. Replace the synthetic dataset with official policies.
+        </div>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

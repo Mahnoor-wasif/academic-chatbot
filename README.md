@@ -1,6 +1,6 @@
 Academic Policy Chatbot (Offline RAG)
 =====================================
-
+Updated project documentation
 This project is a local, offline retrieval-augmented chatbot. It answers questions
 by searching a set of university policy documents and returning the most relevant
 policy excerpts. The current dataset is synthetic and meant only as a demo.

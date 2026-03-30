@@ -1,0 +1,20 @@
+Academic-Chatbot/
+│
+├── app.py                # Main Flask app
+├── requirements.txt     # Dependencies
+├── README.md            # Project documentation
+│
+├── data/
+│   └── policies.jsonl   # Policy dataset
+│
+├── scripts/
+│   └── build_index.py   # Index creation script
+│
+├── storage/
+│   └── index.pkl        # Saved embeddings (generated)
+│
+├── templates/
+│   └── index.html       # Frontend UI
+│
+└── static/
+    └── style.css        # Styling (optional)

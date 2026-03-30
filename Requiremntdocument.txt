@@ -1,0 +1,54 @@
+ 1. REQUIREMENTS DOCUMENT
+📌 Project Title
+
+Academic Policy Chatbot (Offline RAG System)
+
+📌 Overview
+
+This project is a web-based chatbot that helps students quickly find answers related to university academic policies. It uses a Retrieval-Augmented Generation (RAG) approach where responses are generated based on stored policy documents instead of external APIs.
+
+📌 Functional Requirements
+1. User Interaction
+User can enter questions through a web interface
+System processes queries and returns relevant policy answers
+2. Search & Retrieval System
+System must:
+Convert user query into vector embeddings
+Compare with stored document embeddings
+Retrieve top relevant results using cosine similarity
+3. Policy Data Handling
+Store policy data in JSONL format
+Each document contains:
+ID
+Title
+Text
+Tags
+4. Chatbot Response
+Display:
+Relevant policy excerpts
+Titles of policies
+Avoid duplicate results
+Show top 3 relevant answers
+5. Backend System
+Flask-based API
+Endpoint /chat to process queries
+Endpoint / for frontend UI
+6. Indexing System
+Preprocess documents
+Generate embeddings
+Save index in storage/index.pkl
+📌 Non-Functional Requirements
+Offline System (no internet required)
+Fast response time (<2 seconds)
+Scalable for more documents
+User-friendly interface
+Lightweight and easy to deploy
+📌 System Constraints
+Works only with provided dataset
+Requires index file before running
+Limited understanding (no generative AI yet)
+📌 Future Enhancements
+Add LLM for smart responses
+Voice-based interaction
+Multi-language support
+Admin panel for uploading policies
