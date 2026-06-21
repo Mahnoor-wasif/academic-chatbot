@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import patch
-from app import app
+from app import app, build_prompt, generate_answer_from_context
 
 @pytest.fixture
 def client():
@@ -20,6 +20,29 @@ def test_chat_empty_message(client):
     data = response.get_json()
     assert response.status_code == 200
     assert "Please enter a question" in data['answer']
+
+def test_build_prompt_includes_context_and_question():
+    """Prompt builder should substitute the user question and policy context."""
+    prompt = build_prompt(
+        user_question="What is the attendance policy?",
+        retrieved_context="Attendance requires 75% presence.",
+        policy_title="Attendance Policy"
+    )
+    assert "What is the attendance policy?" in prompt
+    assert "Attendance requires 75% presence." in prompt
+    assert "Attendance Policy" in prompt
+
+
+def test_generate_answer_from_context_returns_structured_output():
+    """Generated responses should follow the required format."""
+    result = generate_answer_from_context(
+        user_question="What is the attendance policy?",
+        retrieved_context="Attendance requires 75% presence.",
+        policy_title="Attendance Policy"
+    )
+    assert result["answer"].startswith("Answer:")
+    assert result["source"] == "Attendance Policy"
+    assert result["confidence"] in {"High", "Medium", "Low"}
 
 @patch('app.INDEX', None)
 def test_system_not_ready(client):
