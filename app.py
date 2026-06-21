@@ -241,6 +241,8 @@ def home():
     return render_template("index.html")
 
 
+# app.py mein /chat route update karo
+
 @app.route("/chat", methods=["POST"])
 def chat():
     payload = request.get_json(force=True) or {}
@@ -250,11 +252,17 @@ def chat():
         return jsonify({"answer": "Please enter a question.", "sources": []})
 
     if INDEX is None:
-        return jsonify({"answer": "System is not ready. Please run build_index.py.", "sources": []})
+        return jsonify({"answer": "System not ready.", "sources": []})
 
-    answer, sources = answer_query(message, INDEX)
-    return jsonify({"answer": answer, "sources": sources})
-
+    # Agent use karo instead of direct answer_query
+    from agent import run_agent
+    answer, iterations = run_agent(message, INDEX, MODEL, util, client)
+    
+    return jsonify({
+        "answer": answer,
+        "sources": [],
+        "agent_iterations": iterations  # bonus: show how many steps agent took
+    })
 
 if __name__ == "__main__":
     load_resources()
